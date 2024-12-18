@@ -1,0 +1,65 @@
+{% extends "./base.html" %}
+
+{% block title %} Estudiantes primaria {% endblock %}
+
+{%  block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h2>Registros de primaria</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarEstudiantePrimaria/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtDocumento" name="txtDocumento" class="form-control" placeholder="Documento" 
+                        minlength="8" maxlength="10" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" 
+                        maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Apellido" 
+                        maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtGrado" name="txtGrado" class="form-control" placeholder="Grado" 
+                        maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Listado de primaria</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Grado</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in estudiantes %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{c.id_estudiante}}</td>
+                        <td>{{c.nombre}}</td>
+                        <td>{{c.apellido}}</td>
+                        <td>{{c.grado}}</td>
+                        <td><a href="{% url 'edicionEstudiante' c.id_estudiante %}" class="btn btn-info">Editar</a></td>
+                        <td><a href="{% url 'eliminarEstudiante' c.id_estudiante %}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+        
+{% endblock %}
+

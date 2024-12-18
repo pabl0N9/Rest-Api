@@ -1,0 +1,60 @@
+{% extends "./base.html" %}
+
+{% block tittle %} Gestión de estudiantes {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <div class="table-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <h1>Listado de primaria</h1>
+                        <tr>
+                            <th>#</th>
+                            <th>Documento</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Grado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for MostrarInfo in estudiantes_primaria %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{MostrarInfo.id_estudiante}}</td>
+                            <td>{{MostrarInfo.nombre}}</td>
+                            <td>{{MostrarInfo.apellido}}</td>
+                            <td>{{MostrarInfo.grado}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <table class="table table-striped">
+                    <thead>
+                        <h1>Listado de secundaria</h1>
+                        <tr>
+                            <th>#</th>
+                            <th>Documento</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Especialidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for MostrarInfo in estudiantes_secundaria %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{MostrarInfo.id_estudiante}}</td>
+                            <td>{{MostrarInfo.nombre}}</td>
+                            <td>{{MostrarInfo.apellido}}</td>
+                            <td>{{MostrarInfo.especialidad}}</td>
+                        </tr>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}

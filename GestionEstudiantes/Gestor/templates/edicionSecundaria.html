@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+
+{% block title %} Edición de secundaria {% endblock %}
+
+{%  block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Edición estudiante secundaria</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarEstudianteSecundaria/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtDocumento" name="txtDocumento" value="{{estudiante.id_estudiante}}" class="form-control" placeholder="Documento" 
+                        minlength="8" maxlength="10" readonly required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" value="{{estudiante.nombre}}" class="form-control" placeholder="Nombre" 
+                        maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtApellido" name="txtApellido" value="{{estudiante.apellido}}" class="form-control" placeholder="Apellido" 
+                        maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtEspecialidad" name="txtEspecialidad" value="{{estudiante.especialidad}}" class="form-control" placeholder="Especialidad" 
+                        maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

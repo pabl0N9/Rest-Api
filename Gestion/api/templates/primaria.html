@@ -1,0 +1,66 @@
+{% extends "./base.html" %}
+
+{% block tittle %} Gestión de estudiantes {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <h2>Registros de primaria</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/registrarEstudiantePrimaria/" method="POST"> {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" id="txtDocumento" name="txtDocumento" class="form-control" placeholder="Documento" 
+                            minlength="8" maxlength="10" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" 
+                            maxlength="50" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Apellido" 
+                            maxlength="50" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="txtGrado" name="txtGrado" class="form-control" placeholder="Grado" 
+                            min="1" max="6" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <div class="table-responsive py-2">
+                <table class="table table-striped">
+                    <thead>
+                        <h1>Listado de primaria</h1>
+                        <tr>
+                            <th>#</th>
+                            <th>Documento</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Grado</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for MostrarInfo in estudiantes %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{MostrarInfo.id_estudiante}}</td>
+                            <td>{{MostrarInfo.nombre}}</td>
+                            <td>{{MostrarInfo.apellido}}</td>
+                            <td>{{MostrarInfo.grado}}</td>
+                            <td><a href="{% url 'EdicionP' MostrarInfo.id_estudiante %}" class = "btn btn-info">Editar</a></td>
+                            <td><a href="{% url 'BorrarP' MostrarInfo.id_estudiante %}" class = "btn btn-danger btnEliminacon">Eliminar</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody> 
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
